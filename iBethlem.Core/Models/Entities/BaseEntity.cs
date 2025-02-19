@@ -1,7 +1,11 @@
-﻿namespace iBethlem.Core.Models.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace iBethlem.Core.Models.Entities;
 
 public abstract class BaseEntity
 {
+    [Key]
     public int Id { get; set; }
-    public DateTime Created { get; set; }
+    [Required]
+    public DateTime Created { get; set; } = DateTime.UtcNow;
 }

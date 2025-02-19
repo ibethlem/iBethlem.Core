@@ -4,6 +4,6 @@ namespace iBethlem.Core.Models.Entities;
 
 public abstract class NamedEntity : BaseEntity
 {
-    [MaxLength(100)]
+    [MaxLength(150)]
     public string Name { get; set; }
 }

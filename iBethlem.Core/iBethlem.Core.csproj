@@ -4,8 +4,20 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+	<IsPackable>true</IsPackable>
   </PropertyGroup>
-
+	
+  <PropertyGroup>
+	<OutputType>Library</OutputType>
+	<TargetFramework>net9.0</TargetFramework>
+	<PackageId>iBethlem.Core</PackageId>
+	<Version>0.0.2</Version>
+	<Authors>iBethlem Software</Authors>
+	<Company>iBethlem</Company>
+	<PackageDescription>iBethlem.Core</PackageDescription>
+	<RepositoryUrl>https://github.com/iBethlem/iBethlem.Core</RepositoryUrl>
+  </PropertyGroup>
+	
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
