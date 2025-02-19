@@ -8,4 +8,6 @@ public abstract class BaseEntity
     public int Id { get; set; }
     [Required]
     public DateTime Created { get; set; } = DateTime.UtcNow;
+    [Required]
+    public bool IsActive { get; set; } = true;
 }
