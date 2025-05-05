@@ -11,7 +11,7 @@
 	<OutputType>Library</OutputType>
 	<TargetFramework>net9.0</TargetFramework>
 	<PackageId>iBethlem.Core</PackageId>
-	<Version>0.0.2</Version>
+	<Version>0.0.4</Version>
 	<Authors>iBethlem Software</Authors>
 	<Company>iBethlem</Company>
 	<PackageDescription>iBethlem.Core</PackageDescription>
