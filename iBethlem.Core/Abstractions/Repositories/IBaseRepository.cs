@@ -1,5 +1,4 @@
-﻿using iBethlem.Core.Abstractions.Mappers;
-using iBethlem.Core.Models.Api.Responses;
+﻿using iBethlem.Core.Models.Api.Responses;
 using iBethlem.Core.Models.Entities;
 using System.Linq.Expressions;
 
