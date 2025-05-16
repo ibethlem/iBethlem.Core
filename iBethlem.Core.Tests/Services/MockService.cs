@@ -25,7 +25,7 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
             return new("MockProperty must be informed.");
         }
 
-        var created = await CreateAsync(model, m => m.Name == model.Name);
+        var created = await CreateAsync(model, m => m.Name == model.Name).ConfigureAwait(false);
         return created;
     }
 
@@ -46,7 +46,7 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
             return new("MockProperty must be informed.");
         }
 
-        var updated = await _repository.UpdateEntityAsync(modelId, model);
+        var updated = await _repository.UpdateEntityAsync(modelId, model).ConfigureAwait(false);
         return new(updated);
     }
 
@@ -57,7 +57,7 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
             return new("Id must be informed.");
         }
 
-        var deleted = await _repository.DeleteEntityAsync(modelId);
+        var deleted = await _repository.DeleteEntityAsync(modelId).ConfigureAwait(false);
         return new(deleted);
     }
 
@@ -68,13 +68,13 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
             return new("Id must be informed.");
         }
 
-        var entity = await _repository.GetEntityAsync(modelId);
+        var entity = await _repository.GetEntityAsync(modelId).ConfigureAwait(false);
         return entity is null ? new("Entity not found.") : new(entity);
     }
 
     public async Task<IEnumerable<MockModel>> GetAllAsync()
     {
-        var entities = await _repository.GetEntities().ToListAsync();
+        var entities = await _repository.GetEntities().ToListAsync().ConfigureAwait(false);
         return entities;
     }
 
@@ -84,7 +84,7 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
         {
             return new("Name must be informed.");
         }
-        var entity = await _repository.GetEntities(mock => mock.Name == name).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(mock => mock.Name == name).FirstOrDefaultAsync().ConfigureAwait(false);
         return entity is null ? new("Entity not found.") : new(entity);
     }
 
@@ -94,7 +94,7 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
         {
             return new("MockProperty must be informed.");
         }
-        var entity = await _repository.GetEntities(mock => mock.MockProperty == mockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(mock => mock.MockProperty == mockProperty).FirstOrDefaultAsync().ConfigureAwait(false);
         return entity is null ? new("Entity not found.") : new(entity);
     }
 
@@ -108,7 +108,7 @@ public class MockService(MockRepository _repository) : BaseService<MockEntity, M
         {
             return new("Name must be informed.");
         }
-        var entity = await _repository.GetEntities(mock => mock.MockProperty == mockProperty && mock.Name == name).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(mock => mock.MockProperty == mockProperty && mock.Name == name).FirstOrDefaultAsync().ConfigureAwait(false);
         return entity is null ? new("Entity not found.") : new(entity);
     }
 }

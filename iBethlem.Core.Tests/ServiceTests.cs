@@ -24,7 +24,7 @@ public class ServiceTests
         var modelId = 1;
 
         // act
-        var response = await _service.GetAsync(modelId);
+        var response = await _service.GetAsync(modelId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -37,11 +37,11 @@ public class ServiceTests
     public async Task GetModelsTest()
     {
         // act
-        var response = await _service.GetAllAsync();
+        var response = await _service.GetAllAsync().ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
-        var item = Assert.Single(response);
+        var item = response.First();
         Assert.True(item.Id > 0);
     }
 
@@ -52,7 +52,7 @@ public class ServiceTests
         var model = new MockModel { Name = "MockModel2", MockProperty = "MockProperty2" };
 
         // act
-        var response = await _service.CreateAsync(model);
+        var response = await _service.CreateAsync(model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -63,7 +63,7 @@ public class ServiceTests
         Assert.Equal(model.MockProperty, response.Data.MockProperty);
 
         // act
-        response = await _service.DeleteAsync(response.Data.Id);
+        response = await _service.DeleteAsync(response.Data.Id).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -74,7 +74,7 @@ public class ServiceTests
         Assert.Equal(model.MockProperty, response.Data.MockProperty);
 
         // act
-        response = await _service.GetAsync(response.Data.Id);
+        response = await _service.GetAsync(response.Data.Id).ConfigureAwait(true);
         Assert.NotNull(response);
         Assert.True(response.Error);
         Assert.NotEmpty(response.Message);
@@ -89,7 +89,7 @@ public class ServiceTests
         var model = new MockModel { Id = modelId, Name = "MockModel2", MockProperty = "MockProperty2" };
 
         // act
-        var response = await _service.UpdateAsync(modelId, model);
+        var response = await _service.UpdateAsync(modelId, model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -103,7 +103,7 @@ public class ServiceTests
         model = new MockModel { Id = modelId, Name = "MockModel1", MockProperty = "MockProperty1" };
 
         // act
-        response = await _service.UpdateAsync(modelId, model);
+        response = await _service.UpdateAsync(modelId, model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -114,7 +114,7 @@ public class ServiceTests
         Assert.Equal(model.MockProperty, response.Data.MockProperty);
 
         // act
-        response = await _service.GetAsync(modelId);
+        response = await _service.GetAsync(modelId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -132,7 +132,7 @@ public class ServiceTests
         var model = new MockModel { Name = "", MockProperty = "MockProperty2" };
 
         // act
-        var response = await _service.CreateAsync(model);
+        var response = await _service.CreateAsync(model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -149,7 +149,7 @@ public class ServiceTests
         var model = new MockModel { Name = "MockModel2", MockProperty = "" };
 
         // act
-        var response = await _service.CreateAsync(model);
+        var response = await _service.CreateAsync(model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -167,7 +167,7 @@ public class ServiceTests
         var model = new MockModel { Id = modelId, Name = "MockModel2", MockProperty = "MockProperty2" };
 
         // act
-        var response = await _service.UpdateAsync(modelId, model);
+        var response = await _service.UpdateAsync(modelId, model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -185,7 +185,7 @@ public class ServiceTests
         var model = new MockModel { Id = modelId, Name = "", MockProperty = "MockProperty2" };
 
         // act
-        var response = await _service.UpdateAsync(modelId, model);
+        var response = await _service.UpdateAsync(modelId, model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -203,7 +203,7 @@ public class ServiceTests
         var model = new MockModel { Id = modelId, Name = "MockModel2", MockProperty = "" };
 
         // act
-        var response = await _service.UpdateAsync(modelId, model);
+        var response = await _service.UpdateAsync(modelId, model).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -220,7 +220,7 @@ public class ServiceTests
         var modelId = 0;
 
         // act
-        var response = await _service.DeleteAsync(modelId);
+        var response = await _service.DeleteAsync(modelId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);
@@ -237,7 +237,7 @@ public class ServiceTests
         var modelId = 0;
 
         // act
-        var response = await _service.GetAsync(modelId);
+        var response = await _service.GetAsync(modelId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(response);

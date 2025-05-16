@@ -23,7 +23,7 @@ public class RepositoryTests
         var entityId = 1;
 
         // act
-        var entity = await _repository.GetEntityAsync(entityId);
+        var entity = await _repository.GetEntityAsync(entityId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(entity);
@@ -48,7 +48,7 @@ public class RepositoryTests
         var entity = new MockModel { Name = "MockEntity2", MockProperty = "MockProperty2" };
 
         // act
-        var createdEntity = await _repository.CreateEntityAsync(entity);
+        var createdEntity = await _repository.CreateEntityAsync(entity).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(createdEntity);
@@ -60,14 +60,14 @@ public class RepositoryTests
         var entityId = createdEntity.Id;
 
         // act
-        var deletedEntity = await _repository.DeleteEntityAsync(entityId);
+        var deletedEntity = await _repository.DeleteEntityAsync(entityId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(deletedEntity);
         Assert.Equal(entityId, deletedEntity.Id);
 
         // act
-        deletedEntity = await _repository.GetEntityAsync(entityId);
+        deletedEntity = await _repository.GetEntityAsync(entityId).ConfigureAwait(true);
 
         // assert
         Assert.Null(deletedEntity);
@@ -81,7 +81,7 @@ public class RepositoryTests
         var entity = new MockModel { Id = entityId, Name = "MockEntity2", MockProperty = "MockProperty2" };
 
         // act
-        var updatedEntity = await _repository.UpdateEntityAsync(entityId, entity);
+        var updatedEntity = await _repository.UpdateEntityAsync(entityId, entity).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(updatedEntity);
@@ -90,7 +90,7 @@ public class RepositoryTests
         Assert.Equal(entity.MockProperty, updatedEntity.MockProperty);
 
         // act
-        updatedEntity = await _repository.GetEntityAsync(entityId);
+        updatedEntity = await _repository.GetEntityAsync(entityId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(updatedEntity);
@@ -102,7 +102,7 @@ public class RepositoryTests
         entity = new MockModel { Id = entityId, Name = "MockEntity1", MockProperty = "MockProperty1" };
 
         // act
-        var revertedEntity = await _repository.UpdateEntityAsync(entityId, entity);
+        var revertedEntity = await _repository.UpdateEntityAsync(entityId, entity).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(revertedEntity);
@@ -111,7 +111,7 @@ public class RepositoryTests
         Assert.Equal(entity.MockProperty, revertedEntity.MockProperty);
 
         // act
-        revertedEntity = await _repository.GetEntityAsync(entityId);
+        revertedEntity = await _repository.GetEntityAsync(entityId).ConfigureAwait(true);
 
         // assert
         Assert.NotNull(revertedEntity);
@@ -127,7 +127,7 @@ public class RepositoryTests
         var entityName = "MockEntity1";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.NotNull(entity);
@@ -140,7 +140,7 @@ public class RepositoryTests
         // arrange
         var entityName = "MockEntity3";
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync().ConfigureAwait(true);
         // assert
         Assert.Null(entity);
     }
@@ -152,7 +152,7 @@ public class RepositoryTests
         var entityName = string.Empty;
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -165,7 +165,7 @@ public class RepositoryTests
         string entityName = null;
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -178,7 +178,7 @@ public class RepositoryTests
         var entityName = " ";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -191,7 +191,7 @@ public class RepositoryTests
         var entityMockProperty = "MockProperty1";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.NotNull(entity);
@@ -205,7 +205,7 @@ public class RepositoryTests
         var entityMockProperty = "MockProperty3";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -218,7 +218,7 @@ public class RepositoryTests
         var entityMockProperty = string.Empty;
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -231,7 +231,7 @@ public class RepositoryTests
         string entityMockProperty = null;
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -243,7 +243,7 @@ public class RepositoryTests
         // arrange
         var entityMockProperty = " ";
         // act
-        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
         // assert
         Assert.Null(entity);
     }
@@ -256,7 +256,7 @@ public class RepositoryTests
         var entityMockProperty = "MockProperty1";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.NotNull(entity);
@@ -272,7 +272,7 @@ public class RepositoryTests
         var entityMockProperty = "MockProperty3";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -286,7 +286,7 @@ public class RepositoryTests
         var entityMockProperty = string.Empty;
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -300,7 +300,7 @@ public class RepositoryTests
         string entityMockProperty = null;
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
@@ -314,7 +314,7 @@ public class RepositoryTests
         var entityMockProperty = " ";
 
         // act
-        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync();
+        var entity = await _repository.GetEntities(entity => entity.Name == entityName && entity.MockProperty == entityMockProperty).FirstOrDefaultAsync().ConfigureAwait(true);
 
         // assert
         Assert.Null(entity);
